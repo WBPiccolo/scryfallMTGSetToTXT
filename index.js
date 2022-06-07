@@ -1,18 +1,29 @@
-const axios = require('axios');
 
 if (require.main === module) {
     main();
 }
 
 function main() {
-    const language = 'it';
-    const set = 'DKA';
-    const apiURL = `https://api.scryfall.com/cards/search?q=lang:${language}+set:${set}`;
+    const readline = require('readline');
 
-    getCards(apiURL);
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    rl.question('Lingua del set: ', function (language) {
+        rl.question('Inserire i tre caratteri del set: ', function (setID) {
+            const apiURL = `https://api.scryfall.com/cards/search?q=lang:${language.toLowerCase()}+set:${setID.toLowerCase()}`;
+            console.log(`fetcho da ${apiURL}...`);
+            getCards(apiURL);
+        });
+    });
+
 }
 
 function getCards(url) {
+    const axios = require('axios');
+
     axios
         .get(url).then(res => {
             const cards = res.data.data;
@@ -26,7 +37,6 @@ function getCards(url) {
         })
 
 }
-
 
 function parseCards(cards) {
     //Ordinamento carte
@@ -46,9 +56,8 @@ function parseCards(cards) {
 }
 
 function writeCardsToFile(cards) {
-    console.log('writeCardsToFile', cards);
-
     const fs = require('fs');
+
     const logger = fs.createWriteStream('log.txt');
     cards.forEach(card => {
         logger.write(`${card} \n`);
