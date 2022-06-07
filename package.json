@@ -1,0 +1,23 @@
+{
+  "name": "scryfallmtgsettotxt",
+  "version": "1.0.0",
+  "description": "A simple script to get a txt list of the card in a given set",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WBPiccolo/scryfallMTGSetToTXT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WBPiccolo/scryfallMTGSetToTXT/issues"
+  },
+  "homepage": "https://github.com/WBPiccolo/scryfallMTGSetToTXT#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "nodemon": "^2.0.16"
+  }
+}
