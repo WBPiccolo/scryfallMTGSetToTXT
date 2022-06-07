@@ -27,7 +27,7 @@ function getCards(url) {
     axios
         .get(url).then(res => {
             const cards = res.data.data;
-            console.log(`trovate ${res.data.total_cards} carte`);
+            console.log(`trovate ${res.data.total_cards} carte...`);
             if (Array.isArray(cards)) {
                 parseCards(cards);
             }
@@ -57,11 +57,12 @@ function parseCards(cards) {
 
 function writeCardsToFile(cards) {
     const fs = require('fs');
-
-    const logger = fs.createWriteStream('log.txt');
+    const filename = 'log.txt'
+    const logger = fs.createWriteStream(filename);
     cards.forEach(card => {
         logger.write(`${card} \n`);
     });
 
     logger.end();
+    console.log(`carte salvate su ${filename}`);
 }
